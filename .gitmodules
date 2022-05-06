@@ -4,3 +4,6 @@
 [submodule "cms"]
 	path = cms
 	url = https://github.com/mdecourse/cmsimde
+[submodule "cmsi"]
+	path = cmsi
+	url = https://github.com/mdecourse/cmsimde.git
