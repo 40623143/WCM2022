@@ -25,79 +25,9 @@ var winkVideoData = { dataVersion: 1, frameRate: 10, buttonFrameLength: 5, butto
 </div>
 <div class="winkVideoPlayOverlayClass"></div>
 </div>
-<h1>run</h1>
-<p><a href="https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China#Construction_details">ROC 國旗規格</a> <a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%9B%BD%E6%97%97#%E8%A7%84%E6%A0%BC">PROC 國旗規格</a> <a href="https://en.wikipedia.org/wiki/Flag_of_the_United_States#Specifications">USA 國旗規格</a></p>
-<p><a href="https://gist.github.com/mdecourse/05930b1775b77293523b59b1bbb43e57">Gist Brython scripts</a></p>
-<p><a href="https://mde.tw/cp2021/content/%E8%A7%A3%E9%A1%8C%E7%B7%B4%E7%BF%92.html">解題練習</a></p>
-<p><a href="https://mde.tw/cp2021/content/Cango.html">Cango</a></p>
-<script src="/static/brython.js">
-</script>
-<script src="/static/brython_stdlib.js"></script>
-<!-- for ggame -->
-<p>
-<script src="/static/jquery-3.3.1.min.js"></script>
-<script src="/static/jquery-ui.1.12.1.min.js"></script>
-<script src="/static/pixi-3.0.5.min.js"></script>
-<script src="/static/buzz-1.2.1.js"></script>
-<script src="/static/bs.js"></script>
-<script src="/downloads/brython_modules.js"></script>
-</p>
-<!-- Cango 程式庫 -->
-<p>
-<script src="/static/Cango-24v03-min.js"></script>
-<script src="/static/CangoAxes-6v01-min.js"></script>
-<script src="/static/gearUtils-09.js"></script>
-<script src="/static/SVGpathUtils-6v03-min.js"></script>
-<script src="/static/sylvester.js"></script>
-<script src="/static/PrairieDraw.js"></script>
-</p>
-<!-- for Konva 程式庫 -->
-<p>
-<script src="/static/konva.min.js"></script>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="/static/ace/ace.js" type="text/javascript"></script>
-<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p><button id="add1to100">add 1 to 100</button><button id="p261">p261</button><button id="rocflag">ROC flag</button><button id="procflag">PROC flag</button><button id="usaflag">USA flag</button><button id="drawgrid">Draw Grid</button><button id="grid_rect">Random Rect</button><button id="rect_walk">Rect Walk</button><button id="rect_u_walk">Rect U Walk</button><button id="rect_rev_u_walk">Rect rev U Walk</button><button id="sgcr">單節貪食蛇</button><button id="cfrr">5 個紅點方塊</button><button id="snake">Snake</button><button id="bsnake">BSnake</button><button id="auto_guess">auto_guess</button><button id="ball">ball</button><button id="bezier">bezier</button><button id="big_lotto">big_lotto</button><button id="brython_kw">brython_kw</button><button id="bunny">bunny</button><button id="cango_spur">cango_spur</button><button id="cango_spur1">cango_spur1</button><button id="cango_three_gears">cango_three_gears</button><button id="clear">clear</button><button id="clock">clock</button><button id="convert_temp">convert_temp</button><button id="deepmerge">deepmerge</button><button id="display_stl">display_stl</button><button id="draw">draw</button><button id="ex1">ex1</button><button id="ex2">ex2</button><button id="ex3">ex3</button><button id="ex4">ex4</button><button id="fibo">fibo</button><button id="fourbar">fourbar</button><button id="guess_a_number">guess_a_number</button><button id="hw1_1">hw1_1</button><button id="hw1_2">hw1_2</button><button id="keycode">Keycode</button><button id="knova1">knova1</button><button id="merge3">merge3</button><button id="power_lotto">power_lotto</button><button id="spur">spur</button><button id="spur_w_form">spur_w_form</button><button id="stl_binary_ascii">stl_binary_ascii</button><button id="stl_writer">stl_writer</button><button id="tetris">Tetris</button><button id="turtle1">turtle1</button><button id="turtle2">turtle2</button><button id="turtle3">turtle3</button><button id="turtle4">turtle4</button><button id="turtle5">turtle5</button><button id="turtle6">turtle6</button><button id="turtle7">turtle7</button><button id="turtle8">turtle8</button><button id="twl_link_ik">twl_link_ik</button><button id="webcam">webcam</button><button id="websocket">websocket</button><button id="ycqsort">ycqsort</button></p>
 <p><!-- ######################  editor1 開始 ###################### --></p>
 <p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<h1>W16</h1>
+<div id="kw_editor1" style="width: 600px; height: 300px;"></div><h1>W16</h1>
 <!-- 導入 Brython 的程式庫 -->
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
@@ -357,34 +287,11 @@ browser.timer.set_interval(do_game, fps)
 <p>重新使用pull requestes建立倉儲 </p>
 <p>盡速了解最後瞭周評分標準</p>
 </div><h1>W17</h1>
+<p>記分板出問題:(</p>
 <div id="brython_div">
-<p>盡速了解最後兩週的評分標準</p>
-</div>
-<h1>W18</h1>
-<p># from https://levelup.gitconnected.com/writing-tetris-in-python-2a16bddb5318<br/># 暫時關閉 system proxy 設定後, pip install pygame<br/>#import pygame<br/>import random<br/># 以下為 Brython 新增<br/>from browser import document as doc<br/>from browser import html<br/>import browser.timer</p>
-<p># 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應<br/>canvas = html.CANVAS(width = 400, height = 500, id="canvas")<br/>brython_div = doc["brython_div"]<br/>brython_div &lt;= canvas<br/>ctx = canvas.getContext("2d")</p>
-<p>colors = [<br/> (0, 0, 0),<br/> (120, 37, 179),<br/> (100, 179, 179),<br/> (80, 34, 22),<br/> (80, 134, 22),<br/> (180, 34, 22),<br/> (180, 34, 122),<br/>]</p>
-<p><br/>class Figure:<br/> x = 0<br/> y = 0</p>
-<p>figures = [<br/> [[1, 5, 9, 13], [4, 5, 6, 7]],<br/> [[4, 5, 9, 10], [2, 6, 5, 9]],<br/> [[6, 7, 9, 10], [1, 5, 6, 10]],<br/> [[1, 2, 5, 9], [0, 4, 5, 6], [1, 5, 9, 8], [4, 5, 6, 10]],<br/> [[1, 2, 6, 10], [5, 6, 7, 9], [2, 6, 10, 11], [3, 5, 6, 7]],<br/> [[1, 4, 5, 6], [1, 4, 5, 9], [4, 5, 6, 9], [1, 5, 6, 9]],<br/> [[1, 2, 5, 6]],<br/> ]</p>
-<p>def __init__(self, x, y):<br/> self.x = x<br/> self.y = y<br/> self.type = random.randint(0, len(self.figures) - 1)<br/> self.color = random.randint(1, len(colors) - 1)<br/> self.rotation = 0</p>
-<p>def image(self):<br/> return self.figures[self.type][self.rotation]</p>
-<p>def rotate(self):<br/> self.rotation = (self.rotation + 1) % len(self.figures[self.type])</p>
-<p><br/>class Tetris:<br/> level = 2<br/> score = 0<br/> state = "start"<br/> field = []<br/> height = 0<br/> width = 0<br/> x = 100<br/> y = 60<br/> zoom = 20<br/> figure = None</p>
-<p>def __init__(self, height, width):<br/> self.height = height<br/> self.width = width<br/> self.field = []<br/> self.score = 0<br/> self.state = "start"<br/> for i in range(height):<br/> new_line = []<br/> for j in range(width):<br/> # 起始時每一個都填入 0<br/> new_line.append(0)<br/> self.field.append(new_line)</p>
-<p>def new_figure(self):<br/> self.figure = Figure(3, 0)</p>
-<p>def intersects(self):<br/> intersection = False<br/> for i in range(4):<br/> for j in range(4):<br/> if i * 4 + j in self.figure.image():<br/> # block 到達底部, 左右兩邊界, 或該座標有其他 block<br/> if i + self.figure.y &gt; self.height - 1 or \<br/> j + self.figure.x &gt; self.width - 1 or \<br/> j + self.figure.x &lt; 0 or \<br/> self.field[i + self.figure.y][j + self.figure.x] &gt; 0:<br/> intersection = True<br/> return intersection</p>
-<p>def break_lines(self):<br/> lines = 0<br/> for i in range(1, self.height):<br/> zeros = 0<br/> for j in range(self.width):<br/> if self.field[i][j] == 0:<br/> zeros += 1<br/> if zeros == 0:<br/> lines += 1<br/> for i1 in range(i, 1, -1):<br/> for j in range(self.width):<br/> self.field[i1][j] = self.field[i1 - 1][j]<br/> self.score += lines ** 2</p>
-<p>def go_space(self):<br/> while not self.intersects():<br/> self.figure.y += 1<br/> self.figure.y -= 1<br/> self.freeze()</p>
-<p>def go_down(self):<br/> self.figure.y += 1<br/> if self.intersects():<br/> self.figure.y -= 1<br/> self.freeze()</p>
-<p>def freeze(self):<br/> for i in range(4):<br/> for j in range(4):<br/> if i * 4 + j in self.figure.image():<br/> self.field[i + self.figure.y][j + self.figure.x] = self.figure.color<br/> self.break_lines()<br/> self.new_figure()<br/> if self.intersects():<br/> self.state = "gameover"</p>
-<p>def go_side(self, dx):<br/> old_x = self.figure.x<br/> self.figure.x += dx<br/> if self.intersects():<br/> self.figure.x = old_x</p>
-<p>def rotate(self):<br/> old_rotation = self.figure.rotation<br/> self.figure.rotate()<br/> if self.intersects():<br/> self.figure.rotation = old_rotation</p>
-<p># Define some colors<br/># from https://stackoverflow.com/questions/3380726/converting-a-rgb-color-tuple-to-a-six-digit-code<br/>BLACK = '#%02x%02x%02x' % (0, 0, 0)<br/>WHITE = '#%02x%02x%02x' % (255, 255, 255)<br/>GRAY = '#%02x%02x%02x' % (128, 128, 128)</p>
-<p>done = False<br/>fps = 25<br/>game = Tetris(20, 10)<br/>counter = 0</p>
-<p>pressing_down = False</p>
-<p>def key_down(eve):<br/> key = eve.keyCode<br/> #if event.type == pygame.QUIT:<br/> # 32 is pause<br/> if key == 32:<br/> done = True<br/> # 82 is r key to rotate<br/> if key == 82:<br/> game.rotate()<br/> # 40 is down key<br/> if key == 40:<br/> pressing_down = True<br/> # 37 is left key<br/> if key == 37:<br/> game.go_side(-1)<br/> # 39 is right key<br/> if key == 39:<br/> game.go_side(1)<br/> # 68 is d key to move block to bottom<br/> if key == 68:<br/> game.go_space()<br/> # 27 is escape<br/> # reset the game<br/> if key == 27:<br/> game.__init__(20, 10)</p>
-<p>def key_up(eve):<br/> key = eve.keyCode<br/> # 40 is down key<br/> if key == 40:<br/> pressing_down = False</p>
-<p>#while not done:<br/>def do_game():<br/> global counter<br/> if game.figure is None:<br/> game.new_figure()<br/> counter += 1<br/> if counter &gt; 100000:<br/> counter = 0<br/> if counter % (fps // game.level // 2) == 0 or pressing_down:<br/> if game.state == "start":<br/> game.go_down()<br/> <br/> for i in range(game.height):<br/> for j in range(game.width):<br/> ctx.fillStyle = WHITE<br/> #ctx.scale(game.zoom, game.zoom)<br/> ctx.fillRect(game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom)<br/> if game.field[i][j] &gt; 0:<br/> ctx.fillStyle = '#%02x%02x%02x' % colors[game.field[i][j]]<br/> ctx.fillRect(game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1)<br/> ctx.lineWidth = 1<br/> ctx.strokeStyle = GRAY<br/> ctx.beginPath()<br/> ctx.rect(game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom)<br/> ctx.stroke()<br/> if game.figure is not None:<br/> for i in range(4):<br/> for j in range(4):<br/> p = i * 4 + j<br/> if p in game.figure.image():<br/> ctx.fillStyle = '#%02x%02x%02x' % colors[game.figure.color]<br/> ctx.fillRect(game.x + game.zoom * (j + game.figure.x) + 1,<br/> game.y + game.zoom * (i + game.figure.y) + 1,<br/> game.zoom - 2, game.zoom - 2)<br/># 宣告文字的大小為20px<br/> ctx.font = '20px serif'<br/> # 宣告文字顏色為黑色<br/> ctx.fillStyle = BLACK<br/> # 將分數顯示在遊戲區上方, 座標為(100, 50), 並設定變數為text<br/> ctx.fillText('Score:'+ str(game.score), 100,50)<br/> <br/> # 宣告變數int = 1 ，如果分數大於int，則畫布清掉原本的分數填上新的得分分數<br/> int = 1<br/> if game.score &gt;= int:<br/> ctx.fillStyle = WHITE<br/> ctx.fillRect( 150, 0, 200, 50)<br/> ctx.fillStyle = BLACK<br/> ctx.fillText(str(game.score), 150,50)<br/>doc.addEventListener("keydown", key_down)<br/>doc.addEventListener("keyup", key_up)<br/>browser.timer.set_interval(do_game, fps)</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/-4ZhwASdPm0" width="560"></iframe>可顯示數字 social credit+100</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/Qi8WgyNKEt4" width="560"></iframe></p>
+</div><h1>W18</h1>
 <p></p>
 <!-- graphics-column is for ggame -->
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
