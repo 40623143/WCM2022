@@ -271,6 +271,8 @@ canvas = html.CANVAS(width = 400, height = 500, id="canvas")
 brython_div = doc["brython_div"]
 brython_div <= canvas
 ctx = canvas.getContext("2d")
+ctx.translate(0,canvas.height)#將y方向零點設置在原本高的底部
+ctx.scale(1,-1)#將y方向縮放-1倍
 
 colors = [
     (0, 0, 0),
@@ -520,8 +522,7 @@ var winkVideoData = { dataVersion: 1, frameRate: 10, buttonFrameLength: 5, butto
 </script>
 <p></p>
 <p></p>
-</div>
-<br />W17 << <a href='W17.html'>Previous</a> <a href='W18期末任務1.html'>Next</a> >> W18期末任務1</div>
+</div><br />W17 << <a href='W17.html'>Previous</a> <a href='W18期末任務1.html'>Next</a> >> W18期末任務1</div>
         
     <!-- footer -->
       <div class="container">
