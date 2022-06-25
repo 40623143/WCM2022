@@ -546,12 +546,113 @@ window.onload=function(){brython();}
 '''
 為能在 script src 中導入, 必須將 .py 程式內容透過 cp-to-txt 複製到 .txt
 '''
-# 導入 random 模組
+# from https://levelup.gitconnected.com/writing-tetris-in-python-2a16bddb5318
+# 改為可自動執行模式
 import random
 # 以下為 Brython 新增
 from browser import document as doc
 from browser import html
 import browser.timer
+
+def intersects(game_field, x, y, game_width, game_height, game_figure_image):
+    intersection = False
+    for i in range(4):
+        for j in range(4):
+            if i * 4 + j in game_figure_image:
+                if i + y > game_height - 1 or \
+                        j + x > game_width - 1 or \
+                        j + x < 0 or \
+                        game_field[i + y][j + x] > 0:
+                    intersection = True
+    return intersection
+
+def simulate(game_field, x, y, game_width, game_height, game_figure_image):
+    while not intersects(game_field, x, y, game_width, game_height, game_figure_image):
+        y += 1
+    y -= 1
+
+    height = game_height
+    holes = 0
+    filled = []
+    breaks = 0
+    for i in range(game_height-1, -1, -1):
+        it_is_full = True
+        prev_holes = holes
+        for j in range(game_width):
+            u = '_'
+            if game_field[i][j] != 0:
+                u = "x"
+            for ii in range(4):
+                for jj in range(4):
+                    if ii * 4 + jj in game_figure_image:
+                        if jj + x == j and ii + y == i:
+                            u = "x"
+
+            if u == "x" and i < height:
+                height = i
+            if u == "x":
+                filled.append((i, j))
+                for k in range(i, game_height):
+                    if (k, j) not in filled:
+                        holes += 1
+                        filled.append((k,j))
+            else:
+                it_is_full = False
+        if it_is_full:
+            breaks += 1
+            holes = prev_holes
+
+    return holes, game_height-height-breaks
+
+def best_rotation_position(game_field, game_figure, game_width, game_height):
+    best_height = game_height
+    best_holes = game_height*game_width
+    best_position = None
+    best_rotation = None
+
+    for rotation in range(len(game_figure.figures[game_figure.type])):
+        fig = game_figure.figures[game_figure.type][rotation]
+        for j in range(-3, game_width):
+            if not intersects(
+                    game_field,
+                    j,
+                    0,
+                    game_width,
+                    game_height,
+                    fig):
+                holes, height = simulate(
+                    game_field,
+                    j,
+                    0,
+                    game_width,
+                    game_height,
+                    fig
+                )
+                if best_position is None or best_holes > holes or \
+                    best_holes == holes and best_height > height:
+                    best_height = height
+                    best_holes = holes
+                    best_position = j
+                    best_rotation = rotation
+    return best_rotation, best_position
+
+# 建立一個自動執行的函式
+# step 1
+'''
+def run_ai():
+    game.rotate()
+'''
+#step 2
+def run_ai(game_field, game_figure, game_width, game_height):
+    rotation, position = best_rotation_position(game_field, game_figure, game_width, game_height)
+    if game_figure.rotation != rotation:
+        game.rotate()
+    elif game_figure.x < position:
+        game.go_side(1)
+    elif game_figure.x > position:
+        game.go_side(-1)
+    else:
+        game.go_space()
 
 # 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應
 canvas = html.CANVAS(width = 400, height = 500, id="canvas")
@@ -559,11 +660,6 @@ brython_div = doc["brython_div"]
 brython_div <= canvas
 ctx = canvas.getContext("2d")
 
-
-ctx.translate(0,canvas.height)#將y方向零點設置在原本高的底部
-ctx.scale(1,-1)#將y方向縮放-1倍
-
-# 定義顏色值數列
 colors = [
     (0, 0, 0),
     (120, 37, 179),
@@ -573,8 +669,9 @@ colors = [
     (180, 34, 22),
     (180, 34, 122),
 ]
+
+
 class Figure:
-    # 定義圖形 (Figure) 類別
     x = 0
     y = 0
 
@@ -603,7 +700,7 @@ class Figure:
 
 
 class Tetris:
-    level = 0.5
+    level = 2
     score = 0
     state = "start"
     field = []
@@ -696,9 +793,10 @@ class Tetris:
 BLACK = '#%02x%02x%02x' % (0, 0, 0)
 WHITE = '#%02x%02x%02x' % (255, 255, 255)
 GRAY = '#%02x%02x%02x' % (128, 128, 128)
+RED = '#%02x%02x%02x' % (255, 0, 0)
 
 done = False
-fps = 25
+fps = 5
 game = Tetris(20, 10)
 counter = 0
 
@@ -728,6 +826,9 @@ def key_down(eve):
     # 27 is escape
     # reset the game
     if key == 27:
+        # clear the previous score
+        ctx.fillStyle = WHITE
+        ctx.fillRect( 100, 0, 200, 50)
         game.__init__(20, 10)
 
 def key_up(eve):
@@ -747,6 +848,7 @@ def do_game():
     if counter % (fps // game.level // 2) == 0 or pressing_down:
         if game.state == "start":
             game.go_down()
+            run_ai(game.field, game.figure, game.width, game.height)
     
     for i in range(game.height):
         for j in range(game.width):
@@ -771,7 +873,8 @@ def do_game():
                                       game.y + game.zoom * (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2)
 
-   # 宣告文字的大小為36px
+# score and Game Over scripts from https://s40723245.github.io/wcm2022
+    # 宣告文字的大小為36px
     ctx.font = '36px serif'
     # 宣告文字顏色為黑色
     ctx.fillStyle = BLACK
@@ -781,21 +884,31 @@ def do_game():
     # 宣告變數int = 1 ，如果分數大於int，則畫布清掉原本的分數填上新的得分分數
     int = 1
     if game.score >= int:
-        ctx.fillStyle =WHITE
-        ctx.fillRect( 108, 0, 200, 50)
+        ctx.fillStyle = WHITE
+        ctx.fillRect( 100, 0, 200, 50)
         ctx.fillStyle = BLACK
         ctx.fillText(str(game.score), 108,50)
+    
+    # 如果遊戲狀態為gameover，顯示Game Over及Press ESC，並將文字設定為紅色
+    if game.state == "gameover":
+        ctx.fillStyle = RED
+        ctx.fillText("Game Over", 100, 200)
+        ctx.fillText("Press ESC", 105, 265)
+        ctx.fillStyle = WHITE
+        ctx.fillRect( 100, 0, 200, 50)
+        game.__init__(20, 10)
 
 doc.addEventListener("keydown", key_down)
 doc.addEventListener("keyup", key_up)
 browser.timer.set_interval(do_game, fps)
 </script>
 <div id="brython_div">
+<script>
+var winkVideoData = { dataVersion: 1, frameRate: 10, buttonFrameLength: 5, buttonFrameOffset: 2, frameStops: { }, };
+</script>
 <p></p>
 <p></p>
-<p></p>
-</div>
-<h1>W18期末任務1</h1>
+</div><h1>W18期末任務1</h1>
 <p>在字串"ctx = canvas.getContext("2d")"之後</p>
 <p>新增字串"ctx.translate(0,canvas.height)"</p>
 <p>用來將y方向零點設置從底部改至頂部<br/>新增字串"ctx.scale(1,-1)"</p>
