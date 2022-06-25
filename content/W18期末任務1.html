@@ -141,7 +141,12 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">W14 << <a href='W14.html'>Previous</a> <a href='W17.html'>Next</a> >> W17<br /><h1>W16</h1>
+    <div id="tipue_search_content">W17 << <a href='W17.html'>Previous</a> <br /><h1>W18期末任務1</h1>
+<p>在字串"ctx = canvas.getContext("2d")"之後</p>
+<p>新增字串"ctx.translate(0,canvas.height)"</p>
+<p>用來將y方向零點設置從底部改至頂部<br/>新增字串"ctx.scale(1,-1)"</p>
+<p>用來將y方向縮放-1倍</p>
+<p></p>
 <!-- 導入 Brython 的程式庫 -->
 <script src="./../cmsimde/static/brython.js"></script>
 <script src="./../cmsimde/static/brython_stdlib.js"></script>
@@ -169,6 +174,10 @@ canvas = html.CANVAS(width = 400, height = 500, id="canvas")
 brython_div = doc["brython_div"]
 brython_div <= canvas
 ctx = canvas.getContext("2d")
+
+
+ctx.translate(0,canvas.height)#將y方向零點設置在原本高的底部
+ctx.scale(1,-1)#將y方向縮放-1倍
 
 # 定義顏色值數列
 colors = [
@@ -398,11 +407,10 @@ doc.addEventListener("keyup", key_up)
 browser.timer.set_interval(do_game, fps)
 </script>
 <div id="brython_div">
-<p>重新使用pull requestes建立倉儲 </p>
-<p>盡速了解最後瞭周評分標準</p>
 <p></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/sIheGukuC7Q" width="560"></iframe></p>
-</div><br />W14 << <a href='W14.html'>Previous</a> <a href='W17.html'>Next</a> >> W17</div>
+<p></p>
+<p></p>
+</div></div><br />W17 << <a href='W17.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">
