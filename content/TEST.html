@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">TEST << <a href='TEST.html'>Previous</a> <a href='W16.html'>Next</a> >> W16<br /><h1>W15</h1>
+    <div id="tipue_search_content">Midterm << <a href='Midterm.html'>Previous</a> <a href='W15.html'>Next</a> >> W15<br /><h1>TEST</h1>
 <p>如何在頁面中嵌Brython程式</p>
 <p></p>
 <p></p>
@@ -305,6 +305,9 @@ class Figure:
     def rotate(self):
         self.rotation = (self.rotation + 1) % len(self.figures[self.type])
 
+def update_score(score):
+    score_doc.innerHTML = "Score: " + str(score)
+
 
 class Tetris:
     level = 2
@@ -360,6 +363,7 @@ class Tetris:
                     for j in range(self.width):
                         self.field[i1][j] = self.field[i1 - 1][j]
         self.score += lines ** 2
+        update_score(self.score)
 
     def go_space(self):
         while not self.intersects():
@@ -438,6 +442,10 @@ def key_down(eve):
         ctx.fillRect( 100, 0, 200, 50)
         game.__init__(20, 10)
 
+score_doc = html.DIV("Score:")
+score_doc.id = "Score:"
+brython_div <= score_doc
+
 def key_up(eve):
     key = eve.keyCode
     # 40 is down key
@@ -480,47 +488,16 @@ def do_game():
                                       game.y + game.zoom * (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2)
 
-# score and Game Over scripts from https://s40723245.github.io/wcm2022
-    # 宣告文字的大小為36px
-    ctx.font = '36px serif'
-    # 宣告文字顏色為黑色
-    ctx.fillStyle = BLACK
-    # 將分數顯示在遊戲區上方, 座標為(10, 50), 並設定變數為text
-    ctx.fillText('Score:'+ str(game.score), 10,50)
-    
-    # 宣告變數int = 1 ，如果分數大於int，則畫布清掉原本的分數填上新的得分分數
-    int = 1
-    if game.score >= int:
-        ctx.fillStyle = WHITE
-        ctx.fillRect( 100, 0, 200, 50)
-        ctx.fillStyle = BLACK
-        ctx.fillText(str(game.score), 108,50)
-    
-    # 如果遊戲狀態為gameover，顯示Game Over及Press ESC，並將文字設定為紅色
-    if game.state == "gameover":
-        ctx.fillStyle = RED
-        ctx.fillText("Game Over", 100, 200)
-        ctx.fillText("Press ESC", 105, 265)
-        ctx.fillStyle = WHITE
-        ctx.fillRect( 100, 0, 200, 50)
-        game.__init__(20, 10)
+score_doc = html.DIV("Score:")
+score_doc.id = "Score:"
+brython_div <= score_doc
+
 
 doc.addEventListener("keydown", key_down)
 doc.addEventListener("keyup", key_up)
 browser.timer.set_interval(do_game, fps)
 </script>
-<div id="brython_div"></div>
-<!-- 接下來將 mp4 檔案從 downloads 目錄取出 -->
-<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="./../cmsimde/static" data-varname="winkVideoData" height="630" muted="true" width="1008">
-<source src="./../downloads/auto.mp4" type="video/mp4"/></video>
-<div class="winkVideoOverlayClass"></div>
-<div class="winkVideoControlBarClass"><button class="winkVideoControlBarPlayButtonClass"></button> <button class="winkVideoControlBarPauseButtonClass"></button>
-<div class="winkVideoControlBarProgressLeftClass"></div>
-<div class="winkVideoControlBarProgressEmptyMiddleClass"></div>
-<div class="winkVideoControlBarProgressRightClass"></div>
-</div>
-</div>
-<br />TEST << <a href='TEST.html'>Previous</a> <a href='W16.html'>Next</a> >> W16</div>
+<div id="brython_div"></div><br />Midterm << <a href='Midterm.html'>Previous</a> <a href='W15.html'>Next</a> >> W15</div>
         
     <!-- footer -->
       <div class="container">
