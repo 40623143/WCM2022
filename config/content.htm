@@ -1497,7 +1497,6 @@ def update_score(score):
 
 class Tetris:
     level = 2
-    score = 0
     state = "start"
     field = []
     height = 0
@@ -1623,14 +1622,12 @@ def key_down(eve):
     # 27 is escape
     # reset the game
     if key == 27:
-        # clear the previous score
+       # clear the previous score
         ctx.fillStyle = WHITE
         ctx.fillRect( 100, 0, 200, 50)
         game.__init__(20, 10)
 
-score_doc = html.DIV("Score:")
-score_doc.id = "Score:"
-brython_div <= score_doc
+
 
 def key_up(eve):
     key = eve.keyCode

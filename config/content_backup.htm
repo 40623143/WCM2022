@@ -1328,7 +1328,7 @@ var winkVideoData = { dataVersion: 1, frameRate: 10, buttonFrameLength: 5, butto
 </div><h1>W18作業(二)</h1>
 <p><span>修改 </span><a href="https://mde.tw/wcm2022_guide/content/run.html?src=https://gist.githubusercontent.com/mdecourse/05930b1775b77293523b59b1bbb43e57/raw/45740f32e5c3ee292a88df8a47f46e60039b77f9/pygame_to_brython_tetris_ai.py">Auto Tetris Game in Brython</a><span><span> </span>網際遊戲, 讓原本由上往下落的方塊遊戲規則, 改為由下往上移動的方式進行遊戲, 保留原本的控制按鍵方式, 並加入計分系統, 程式修改編寫請利用個人 Github 帳號對應的 Gist 進行配置, 完成後, 請將程式部署在個人網頁的"期末任務2" H1 格式網頁上, 並利用 Wink 製作程式修改過程與心得影片後, 一併嵌入個人網頁的"期末任務2"頁面中.</span></p>
 <p><span></span></p>
-<p>參考自41023146同學之期末作業</p>
+<p>參考自41023146同學之期末心得</p>
 <p>內容完整講解詳細任何人都可一目瞭然</p>
 <p></p>
 <!-- 導入 Brython 的程式庫 -->
@@ -1497,7 +1497,6 @@ def update_score(score):
 
 class Tetris:
     level = 2
-    score = 0
     state = "start"
     field = []
     height = 0
@@ -1623,10 +1622,11 @@ def key_down(eve):
     # 27 is escape
     # reset the game
     if key == 27:
-        # clear the previous score
+       # clear the previous score
         ctx.fillStyle = WHITE
         ctx.fillRect( 100, 0, 200, 50)
         game.__init__(20, 10)
+
 
 score_doc = html.DIV("Score:")
 score_doc.id = "Score:"
